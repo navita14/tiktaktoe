@@ -1,7 +1,5 @@
 class Row():
-    rows = []
-    def __init__(self, squares):
+    def __init__(self, index = 0):
         self.squares = []
-        Row.rows.append(self)
 
-        
+    

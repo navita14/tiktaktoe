@@ -1,7 +1,6 @@
 class Square():
-    def __init__(self, row, value = "X"):
+    def __init__(self, row, value = ''):
         self.value = value
-        self.row = row
         row.squares.append(self)
 
     def __repr__(self):
