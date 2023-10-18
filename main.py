@@ -1,6 +1,6 @@
 import random
 
-
+#global variables
 board = ['-', '-', '-',
          '-', '-', '-',
          '-', '-', '-']
