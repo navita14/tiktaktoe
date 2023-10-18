@@ -1,12 +1,12 @@
 class Square():
-    def __init__(self, row, player, index, value = '--'):
+    def __init__(self, row, player, index, value):
         self.value = value
         row.squares.append(self)
         player.squares.append(self)
         self.index = index
 
     def __repr__(self):
-        return self.value
+        return f"{self.value}"
 
 
     @property

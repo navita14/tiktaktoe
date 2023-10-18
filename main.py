@@ -43,7 +43,7 @@ def board_creator(board_size, player):
         row = Row(i)
         x = 0
         while x < int(board_size):
-            Square(row, player, x)
+            Square(row, player, x, (i, x))
             x += 1
         i += 1
         board.append(row.squares)
