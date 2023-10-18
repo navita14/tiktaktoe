@@ -1,112 +1,59 @@
-import random
+from classes.Row import Row
+from classes.Square import Square
+from classes.Player import Player
 
-#global variables
-board = ['-', '-', '-',
-         '-', '-', '-',
-         '-', '-', '-']
+#three rows
+row_1 = Row(0)
+row_2 = Row(1)
 
-currentPlayer = 'X'
-winner = None
-gameRunning = True
+player_1 = Player("Nav")
 
+#row 1 square values
+square_1 = Square(row_1, player_1, 0)
+square_2 = Square(row_1, player_1, 1)
+square_3 = Square(row_1, player_1, 2)
 
-
-
-#printing the game board
-def printBoard(board):
-    print(board[0] + ' | ' + board[1] + ' | ' + board[2])
-    print('----------')
-    print(board[3] + ' | ' + board[4] + ' | ' + board[5])
-    print('----------')
-    print(board[6] + ' | ' + board[7] + ' | ' + board[8])
-
-printBoard(board)
-
-#take player input 
-def playerInput(board):
-    inp = int(input("Enter a number 1-9: "))
-    if inp >= 1 and inp <=9 and board[inp-1] == "-":
-        board[inp-1] = currentPlayer
-    else:
-        print('Oops, try again. Player is currently in that spot')
-
-#check for win or tie
-def checkHorizontal(board):
-    global winner
-    if board[0] == board[1]== board[2] and board[1] != '-':
-        winner = board[0]
-        return True
-    elif board[3] == board[4]== board[5] and board[3] != '-':
-        winner = board[3]
-        return True
-    elif board[6] == board[7]== board[8] and board[6] != '-':
-        winner = board[6]
-        return True
+square_4 = Square(row_2, player_1, 0)
+square_5 = Square(row_2, player_1, 1)
+square_6 = Square(row_2, player_1, 2)
 
 
-def checkRow(board):
-    global winner
-    if board[0] == board[3]== board[6] and board[0] != '-':
-        winner = board[0]
-        return True
-    elif board[1] == board[4]== board[7] and board[1] != '-':
-        winner = board[1]
-        return True
-    elif board[2] == board[5]== board[8] and board[2] != '-':
-        winner = board[2]
-        return True
+def main():
+
+    while True:
+        print(row_1.squares)
+        print(row_2.squares)
+
+        player_row_input = input('Which row do you want?')
+
+        for row in Row.rows:
+            if row.index == int(player_row_input):
+                index_selection = row.squares
+
+        player_square_selection = input("which square do you want")
+
+        for square in index_selection:
+            if square.index == int(player_square_selection):
+                change_square_value = input("input your choice")
+                square.value = change_square_value
+
+        print(row_1.squares)
+        print(row_2.squares)
+
+        quit_out = input("end")
+
+        if quit_out == "y":
+            return False
+
+if __name__ == '__main__':
+    main()
     
-def checkDiagonal(board):
-    global winner
-    if board[0] == board[4]== board[8] and board[0] != '-':
-        winner = board[0]
-        return True
-    elif board[2] == board[4]== board[6] and board[2] != '-':
-        winner = board[2]
-        return True
+
+
+
+
+
+        
     
-def checkTie(board):
-    global gameRunning
-    if '-' not in board:
-        printBoard(board)
-        print("It is a tie!")
-        gameRunning = False
-
-def checkWin():
-    if checkDiagonal(board) or checkHorizontal(board)  or checkRow(board):
-        print(f'The winner is {winner}')
-        return True
-    else:
-        return False
-
-#switch the player
-def switchPlayer():
-    global currentPlayer
-    if currentPlayer == 'X':
-        currentPlayer = 'O'
-    else:
-        currentPlayer = 'X'
-
-#computer
-def computer(board):
-    while currentPlayer == "O":
-        position = random.randint(0,8)
-        if board[position] == "-":
-            board[position] = "O"
-            switchPlayer()
-
-
-#check for win or tie again
-while gameRunning:
-    printBoard(board)
-    playerInput(board)
-    if checkWin() or not gameRunning:
-        break
-    checkTie(board)
-    switchPlayer()
-    computer(board)
-    if checkWin() or not gameRunning:
-        break
-    checkTie(board)
 
 

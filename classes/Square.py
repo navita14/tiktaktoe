@@ -1,5 +1,5 @@
 class Square():
-    def __init__(self, row, player, index, value = 'placeholder'):
+    def __init__(self, row, player, index, value = '--'):
         self.value = value
         row.squares.append(self)
         player.squares.append(self)
